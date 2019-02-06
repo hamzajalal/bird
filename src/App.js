@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import NavBar from './layout/NavBar';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+
+import Dashboard from './views/Dashboard';
+import ObservationDetails from './components/ObservationDetails';
+import CreateObservation from './components/CreateObservation';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar />
+          <Switch>
+            <Route exact path='/' component={Dashboard} />
+            <Route path='/observation/:id' component={ObservationDetails} />
+            <Route path='/create' component={CreateObservation} />
+          </Switch>
+        </div>
+        </BrowserRouter>
+      
     );
   }
 }
