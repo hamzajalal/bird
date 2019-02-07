@@ -8,7 +8,7 @@ import { TextField } from 'redux-form-material-ui';
 
 
 let ObservationForm = props => {
-    const { handleSubmit, reset } = props;
+    const { handleSubmit, reset  } = props;
 
     return ( 
         <form onSubmit={handleSubmit} >
@@ -17,7 +17,7 @@ let ObservationForm = props => {
                 <Field 
                     
                     label ="Name "
-                    name ="title"
+                    name ="name"
                     id="nameInputOfObservationForm"
                     //ref="nameInputOfObservationForm"
                     component= {TextField}  type="text"
@@ -37,7 +37,7 @@ let ObservationForm = props => {
                    id="nameInputOfObservationForm"
                    //ref="nameInputOfObservationForm"
                    component= {TextField}  type="text"
-                   placeholder="Enter Observation Content" 
+                   placeholder="Enter Notes" 
                    margin = 'normal'
                    variant  = 'outlined'
                /> 
@@ -50,10 +50,9 @@ let ObservationForm = props => {
                    type="submit"
                    variant="contained" color="primary"
                    margin = "normal"
-                   style={{marginRight: 25}}
-                  
+                   style={{marginRight: 25}}  
                  >
-                 
+                
                     Add Observation
                 </Button>
                 

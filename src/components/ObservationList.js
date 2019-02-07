@@ -5,7 +5,7 @@ import ObservationSummary from './ObservationSummary';
 
 const ObservationList = ({observations}) => {
     return (
-        <div className="Observation-list section">
+        <div >
         { observations && observations.map(observation => {
             return (
                 <Link to= {'/observation/' + observation.id} key={observation.id}>

@@ -32,20 +32,18 @@ const ObservationSummary =({observation}) => {
           <CardContent>
               <div>
             <Typography gutterBottom variant="h5" component="h2">
-              {observation.title}
+              {observation.name}
             </Typography>
-            <Typography component="p">
+            <Typography component="h6">
               {observation.content}
             </Typography>
+            <Typography variant="p" >{ observation.createdAt.toDate().toString() }</Typography>
             </div>
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
+            See Details
           </Button>
         </CardActions>
       </Card>
