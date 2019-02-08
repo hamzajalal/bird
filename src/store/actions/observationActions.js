@@ -13,18 +13,3 @@ export const createObservation = (observation) => {
 
     }
 };
-
-// export const getRarity = (rareLevel) => {
-//     return (dispatch, getState, { getFirebase, getFirestore }) => {
-//         //make async call to database
-//         const firestore = getFirestore();
-//         firestore.collection('rarity').add({
-//             rareLevel
-//         }).then(() => {
-//             dispatch({ type: 'GET_RARITY', rareLevel});
-//         }).catch((err) => {
-//             dispatch({ type: 'GET_RARITY_FAIL', err });
-//         })
-
-//     }
-// };

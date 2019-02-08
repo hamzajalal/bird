@@ -4,7 +4,6 @@ import { reset } from 'redux-form';
 import ObservationForm from '../components/ObservationForm';
 import { createObservation } from "../store/actions/observationActions";
 import PropTypes from 'prop-types';
-//import RarityOptions from './RarityOptions';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -28,7 +27,7 @@ class CreateObservation extends Component {
     state = {
         name: '',
         content: '',
-        rareLevel: '',
+        rarity: '',
         open: false,
     };
  
@@ -44,67 +43,56 @@ class CreateObservation extends Component {
         this.setState({ open: true });
       };
     
-    
-
   render() {
-    console.log(this.props);
+    console.log(this.props.rarity);
     const { classes } = this.props;
     
 //This is an issue code... We need to access rareLevel here to get a menu work!
-    let rarityOptions = (rarity) => {
+    // let rarityOptions = (rarity) => {
         
-        return( 
-        <div>
-        { rarity && rarity.map(rareLevel => {
-            return (
+    //     return( 
+    //     <div>
+    //     { rarity && rarity.map(rarity => {
+    //         return (
               
-                <MenuItem  > 
-                    {rareLevel}
-                </MenuItem>
+    //             <MenuItem rarity= {rarity.Rare} > 
+    //                 {rarity.Rare}
+    //             </MenuItem>
                  
-            )
-        })}
-        </div>
-        )
-      }
-
+    //         )
+    //     })}
+    //     </div>
+    //     )
+    //   }
+    
     return (
         
-        
         <form autoComplete="off">
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="rarity-select">Rarity</InputLabel>
+            <Select
+              open={this.state.open}
+              onClose={this.handleClose}
+              onOpen={this.handleOpen}
+              value={this.state.age}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'rarity',
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={2}>ki</MenuItem>
+              <MenuItem value={1}>Tone</MenuItem>
+              <MenuItem value={0}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
 
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="demo-controlled-open-select">Rarity</InputLabel>
-          <Select
-            open={this.state.open}
-            onClose={this.handleClose}
-            onOpen={this.handleOpen}
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'rareLevel',
-              
-            }}
-          >
-          {rarityOptions}
-          
-            {/* <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem> */}
-          </Select>
-        </FormControl>
-
-            <div>
-                
-            <h1>Adding a new Observation</h1>
-                <ObservationForm onSubmit={this.props.submit}
-                />
-
+            <div>  
+              <h1>Adding a new Observation</h1>
+                <ObservationForm onSubmit={this.props.submit}/>
             </div>
-
       </form>
       
     );
@@ -117,7 +105,6 @@ const mapStateToProps = state => {
           rarity: state.firestore.ordered.rarity
       }
   }
-
 
 //loads dispatch methods to components props
 const mapDispatchToProps = dispatch => ({
@@ -134,7 +121,6 @@ CreateObservation.propTypes = {
     submit: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
   };
-
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

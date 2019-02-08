@@ -15,7 +15,6 @@ class Dashboard extends Component {
 				</div>
        <h1> This is final view for the Observation , multiple components used to make a single view . </h1>
 
-       
         <ObservationList  observations = {observations}/>
       </div>
     );

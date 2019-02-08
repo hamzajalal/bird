@@ -38,22 +38,7 @@ class tested extends React.Component {
 
   render() {
     const { classes } = this.props;
-    let rarityOptions = (rarity) => {
-      return( 
-      <div>
-      { rarity && rarity.map(rareLevel => {
-          return (
-            <div>
-              <MenuItem value="rareLevel" rareLevel={rareLevel}> 
-                  {[0]}
-              </MenuItem>
-              <MenuItem value="rareLevel" rareLevel={rareLevel}>{[1]}</MenuItem>
-              <MenuItem value="rareLevel" rareLevel={rareLevel}>{[2]}</MenuItem>  </div>
-          )
-      })}
-      </div>
-      )
-    }
+    
 
     return (
       <form autoComplete="off">
@@ -70,7 +55,12 @@ class tested extends React.Component {
               id: 'demo-controlled-open-select',
             }}
           >
-            {rarityOptions}
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
       </form>
