@@ -2,7 +2,7 @@ export const createObservation = (observation) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
-        firestore.collection('observations',).add({
+        firestore.collection('observations').add({
             ...observation,
             createdAt: new Date(),
         }).then(() => {

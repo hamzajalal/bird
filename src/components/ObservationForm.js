@@ -1,16 +1,98 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import {ReactDOM} from 'react-dom';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import Button  from '@material-ui/core/Button';
 import { TextField } from 'redux-form-material-ui';
+import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+const styles = theme => ({
+  
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
+      marginTop: 60,
+      marginLeft: 160,
+    },
+  });
 
 
-let ObservationForm = props => {
-    const { handleSubmit, reset  } = props;
+
+class ObservationForm extends Component {
+    state = {
+        name: '',
+        content: '',
+        rarityStatus: '',
+        open: false,
+    };
+
+ 
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+      };
+    
+      handleClose = () => {
+        this.setState({ open: false });
+      };
+    
+      handleOpen = () => {
+        this.setState({ open: true });
+      };
+    
+  render() {
+    //console.log(this.props.rarity);
+    const { classes } = this.props;
+    const { handleSubmit, reset, } = this.props;
+    const rarityStatusArray = [
+        {id: 1, label: "Common"},
+        {id: 2, label: "Common"},
+        {id: 3, label: "Common"},
+    ],
+  
+    const rarityStatusOptions = 
+          rarityStatusArray.map((rarityStatus, id) => 
+      <MenuItem key={id} value={rarityStatus.id}>{rarityStatus.label}</MenuItem>);
 
     return ( 
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} autoComplete="off" >
+
+            {/* <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="rarityStatusInputOfObservationForm">Rarity</InputLabel>
+                <Select
+                open={this.state.open}
+                onClose={this.handleClose}
+                onOpen={this.handleOpen}
+                value={this.state.rarityStatus}
+                onChange={this.handleChange}
+                inputProps={{
+                    name: 'rarityStatus',
+                    id:"rarityStatusInputOfObservationForm"
+                }}
+                >
+                <MenuItem >
+                    <em>None</em>
+                </MenuItem>
+                <MenuItem value={"Common"}>Common</MenuItem>
+                <MenuItem value={"Rare"}>Rare</MenuItem>
+                <MenuItem value={"ex"}>Extremely Rare</MenuItem>
+                </Select>
+            </FormControl> */}
+
+            <div>
+                <Field
+                    name="rarityStatus"
+                    component={Select}
+                    label="Rarity Status"
+                    //style={styleRules.customWidth}
+                    variant="outlined">
+                    {rarityStatusOptions}
+                </Field>
+            </div>
+
             <div>
                
                 <Field 
@@ -26,6 +108,21 @@ let ObservationForm = props => {
                 /> 
 
             </div>
+            {/* <div>
+               
+                <Field 
+                    
+                    label ="RarityStatus "
+                    name ="rarityStatus"
+                    id="nameInputOfObservationForm"
+                    //ref="nameInputOfObservationForm"
+                    component= {TextField}  type="text"
+                    placeholder="Enter rarity" 
+                    margin = 'normal'
+                    variant  = 'outlined'
+                /> 
+
+            </div> */}
 
             <div>
                
@@ -33,7 +130,7 @@ let ObservationForm = props => {
                    
                    label ="Content "
                    name ="content"
-                   id="nameInputOfObservationForm"
+                   id="contentInputOfObservationForm"
                    //ref="nameInputOfObservationForm"
                    component= {TextField}  type="text"
                    placeholder="Enter Notes" 
@@ -67,7 +164,7 @@ let ObservationForm = props => {
             </div>
         </form>
     );
-}
+}}
 
 ObservationForm.componentDidMount = () => {
     // Doesn't work, nor several other attempts of the same kind
@@ -81,7 +178,7 @@ ObservationForm = reduxForm({
     form: 'observationForm'
 })(ObservationForm);
 
-export default ObservationForm;
+export default withStyles(styles)(ObservationForm);
 
 
 ObservationForm.propTypes = {

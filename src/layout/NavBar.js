@@ -21,7 +21,7 @@ const NavBar = () => {
               </Link>
 
               <Button disableRipple={true} component={Link} to="/create" color="secondary" >
-              <Typography variant="h5" >Add New Observation</Typography>
+              <Typography variant="h6" >Add New Observation</Typography>
               </Button>
                            
             </Toolbar>
