@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
+import { Typography } from '@material-ui/core';
 import ObservationForm from '../components/ObservationForm';
 import { createObservation } from "../store/actions/observationActions";
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = {
+  centerAlign: {
+      textAlign: 'center'
+  },
+};
 
 class CreateObservation extends Component {
     state = {
@@ -16,17 +23,15 @@ class CreateObservation extends Component {
     };
     
   render() {
+    const { classes } = this.props;
     
     return (
-        
         <form autoComplete="off">
             <div>  
-              <h1>Adding a new Observation</h1>
-                <ObservationForm onSubmit={this.props.submit}/>
+                <Typography variant="h3" className={classes.centerAlign}>Adding a new Observation</Typography>
+                    <ObservationForm onSubmit={this.props.submit}/>
             </div>
-            </form>
-      
-      
+        </form>
     );
   }
 }
@@ -49,4 +54,4 @@ CreateObservation.propTypes = {
 
 export default compose(
   connect(null, mapDispatchToProps),
-  )(CreateObservation);
+  )(withStyles(styles)(CreateObservation));

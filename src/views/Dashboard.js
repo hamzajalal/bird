@@ -9,9 +9,9 @@ class Dashboard extends Component {
     //console.log(this.props);
     const { observations } = this.props;
     return (
-      <div>
-       <h1> This is final view for the Observation , multiple components used to make a single view . </h1>
-        <ObservationList  observations = {observations}/>
+      <div className= "container">
+        <h1> This is final view for the Observation List . </h1>
+          <ObservationList  observations = {observations}/>
       </div>
     );
   }

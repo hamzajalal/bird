@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import {ReactDOM} from 'react-dom';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
@@ -7,23 +7,32 @@ import { TextField } from 'redux-form-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from 'redux-form-material-ui/lib/Select';
 import { styleRules } from './ObservationFormStyles';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = theme => ({
-  
-    formControl: {
-      margin: theme.spacing.unit,
-      minWidth: 120,
-      marginTop: 60,
-      marginLeft: 160,
-    },
-  });
 
 const rarityStatusArray = [
     {id: 1, label: "Common"},
     {id: 2, label: "Rare"},
     {id: 3, label: "Extremely Rare"},
 ];
+
+const validate = values => {
+    const error = {};
+    error.name = '';
+    error.content = '';
+    error.rarityStatus = '';
+
+    if (values.name === undefined || values.name.length < 1 || values.name === '') {
+        error.name = 'Please provide a name';
+    }
+
+    if (values.content === undefined || values.content.length < 1 || values.content === '') {
+        error.content = 'Please provide a description of this specie';
+    }
+
+    if (values.rarityStatus === undefined) {
+        error.rarityStatus = 'Please select the rarity of the specie';
+    }
+    return error;
+};
 
 let ObservationForm = props => {
     const { handleSubmit, reset  } = props;
@@ -33,7 +42,7 @@ let ObservationForm = props => {
       <MenuItem key={id} style={styleRules.customWidth} value={rarityStatus.label}>{rarityStatus.label}</MenuItem>);
 
     return ( 
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} style={styleRules.formControl}>
 
             <div>
                 <Field
@@ -57,32 +66,29 @@ let ObservationForm = props => {
                     margin = 'normal'
                     variant  = 'outlined'
                 /> 
-
             </div>
-           
 
-            <div>
-               
+            <div>  
                <Field
                    label ="Content "
                    name ="content"
+                   rowsMax="6"
                    id="contentInputOfObservationForm"
                    //ref="nameInputOfObservationForm"
-                   component= {TextField}  type="text"
+                   component= {TextField} 
                    placeholder="Enter Notes" 
                    margin = 'normal'
                    variant  = 'outlined'
-               /> 
-
+               />
            </div>
 
-            <div >
+            <div>
                 <Button  
                    type="submit"
                    variant="contained" color="primary"
                    margin = "normal"
                    style={{marginRight: 25}}  
-                 >
+                    >
                     Add Observation
                 </Button>
                 
@@ -91,7 +97,8 @@ let ObservationForm = props => {
                     variant="contained" color="secondary"
                     margin = "normal"
                     style={{marginLeft: 25}}
-                    onClick={reset}>
+                    onClick={reset}
+                    >
                     Clear field
                 </Button>
             </div>
@@ -99,20 +106,12 @@ let ObservationForm = props => {
     );
 };
 
-ObservationForm.componentDidMount = () => {
-    // Doesn't work, nor several other attempts of the same kind
-    document.getElementById("nameInputOfObservationForm").focus();
-
-    // Not allowed this way!
-    // this.refs.nameInputOfObservationForm.focus(); 
-}
-
 ObservationForm = reduxForm({
-    form: 'observationForm'
+    form: 'observationForm',
+    validate
 })(ObservationForm);
 
-export default withStyles(styles)(ObservationForm);
-
+export default (ObservationForm);
 
 ObservationForm.propTypes = {
     handleSubmit: PropTypes.func,

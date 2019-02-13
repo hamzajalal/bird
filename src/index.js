@@ -10,6 +10,8 @@ import thunk from 'redux-thunk';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import fbConfig from './config/fbConfig';
+import {MuiThemeProvider} from '@material-ui/core/styles';
+import theme from './styles/theme';
 
 const store = createStore(rootReducer, 
     compose(
@@ -20,9 +22,11 @@ const store = createStore(rootReducer,
 );
 
 ReactDOM.render(
-    <Provider store = {store}>
-        <App />
-    </Provider>, document.getElementById('root'));
+    <MuiThemeProvider theme={theme}>
+        <Provider store = {store}>
+            <App />
+        </Provider>
+    </MuiThemeProvider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

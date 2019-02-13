@@ -11,11 +11,8 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 345,
-    
-  },
-  media: {
-    height: 140,
+    maxWidth: 445,
+    margin: 10,
   },
 };
 const ObservationSummary =({observation}) => {
@@ -52,7 +49,5 @@ const ObservationSummary =({observation}) => {
       </Card>
     );
   }
-
-
 
 export default withStyles(styles)(ObservationSummary);
