@@ -8,11 +8,12 @@ import CardContent from '@material-ui/core/CardContent';
 //import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
 const styles = {
   card: {
-    maxWidth: 445,
-    margin: 10,
+    minWidth: 475,
+    margin: 10
   },
 };
 const ObservationSummary =({observation}) => {
@@ -36,7 +37,7 @@ const ObservationSummary =({observation}) => {
                 {observation.rarityStatus}
               </Typography>
               
-              <Typography variant="p" >{ observation.createdAt.toDate().toString() }</Typography>
+              <Typography variant="p" >{ moment(observation.createdAt.toDate()).format('LLL') }</Typography>
             </div>
           </CardContent>
         </CardActionArea>
