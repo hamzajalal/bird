@@ -29,7 +29,8 @@
 
 
 ### Packages
-•	Core Components:
+#### •	Core Components:
+
 o	react
 
 o	react-dom
@@ -58,7 +59,7 @@ o	prop-types
 
 o	redux-form
 
-•	Display Layer
+#### •	Display Layer
 
 o	Material UI
 
