@@ -31,22 +31,39 @@
 ### Packages
 •	Core Components:
 o	react
+
 o	react-dom
+
 o	react-scripts
+
 o	redux
+
 o	react-redux
+
 o	redux-thunk
+
 o	firebase
+
 o	react-router-dom
+
 o	react-redux-firebase
+
 o	redux-firestore
+
 o	redux-form
+
 o	redux-form-material-ui
+
 o	prop-types
+
 o	redux-form
+
 •	Display Layer
+
 o	Material UI
-o	moment 
+
+o	moment
+
 
 ### Sources
 Please note: some of the documentation below includes documentation for multiple packages e.g. react and react-dom are both part of react.
