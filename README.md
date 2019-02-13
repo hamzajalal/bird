@@ -1,24 +1,34 @@
-#CGI_Observation - Assignment
+# CGI_Observation - Assignment
 
-##PROJECT INSTALLATION GUIDE
+## PROJECT INSTALLATION GUIDE
 1.	Clone this repository to your local device and moved to that root folder.
 2.	run command pwd to make sure that you are in the root folder where you cloned the repository “bird”.
 3.	run npm install in the repo folder to automatically install all dependencies mentioned in package.json
 4.	Then Run npm start
 
-##Folder structure and package README
-###Folder structure
+## Folder structure and package README
+
+### Folder structure
 ----public/
+
 ----src/
+
 --------components/
+
 --------config/		    -->firebase conig file
+
 --------layout/		    -->navbar
+
 --------store/actions	-->actions and reducers for Redux are in this folder
+
 --------styles/theme
+
 --------views/
+
 --------App.js/		    -->routes
 
-###Packages
+
+### Packages
 •	Core Components:
 o	react
 o	react-dom
@@ -38,7 +48,7 @@ o	redux-form
 o	Material UI
 o	moment 
 
-###Sources
+### Sources
 Please note: some of the documentation below includes documentation for multiple packages e.g. react and react-dom are both part of react.
 React: https://reactjs.org/docs/getting-started.html
 
