@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -13,12 +13,18 @@ const styles = {
     leftAlign: {
         textAlign: 'left'
     },
+    rightAlign: {
+        textAlign: 'right'
+    },
+    centerAlign: {
+        textAlign: 'center'
+    },
     paper: {
         padding: 40,
         textAlign: 'center', 
     },
     firstPaper: {
-        marginTop: 60
+        marginTop: 20
     },
   };
 
@@ -26,14 +32,14 @@ const ObservationDetails = (props) => {
     const { observation, classes } = props;
     if (observation) {
         return (
-            <Grid container spacing={24}>
+            <Grid container spacing={24} >
             <Paper className={[classes.paper, classes.firstPaper]}>
                 <div >
+                <Typography variant="h7" className={classes.rightAlign}>{ observation.rarityStatus }</Typography>
                     <Typography variant="h4" className={classes.leftAlign}>{ observation.name }</Typography>
+                    
                     <Typography variant="h6" className={classes.leftAlign}>{ observation.content }</Typography>
-                    <Typography variant="p" className={classes.leftAlign}>{ observation.createdAt.toDate().toString() }</Typography>
-                            
-                                
+                    <Typography variant="p" className={classes.leftAlign}>{ observation.createdAt.toDate().toString() }</Typography>             
                                       
                 </div>
             </Paper> 
@@ -46,10 +52,6 @@ const ObservationDetails = (props) => {
             </div>
             )
     }
-}
-
-ObservationDetails.propTypes = {
-
 }
 
 const mapStateToProps = (state, myProps) => {

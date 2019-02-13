@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import NavBar from './layout/NavBar';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from './views/Dashboard';
 import ObservationDetails from './components/ObservationDetails';
 import CreateObservation from './views/CreateObservation';
+
 
 class App extends Component {
   render() {

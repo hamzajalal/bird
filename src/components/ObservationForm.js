@@ -4,17 +4,40 @@ import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import Button  from '@material-ui/core/Button';
 import { TextField } from 'redux-form-material-ui';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from 'redux-form-material-ui/lib/Select';
+import { styleRules } from './ObservationFormStyles';
 
+
+const rarityStatusArray = [
+    {id: 1, label: "Common"},
+    {id: 2, label: "Rare"},
+    {id: 3, label: "Extremely Rare"},
+];
 
 let ObservationForm = props => {
     const { handleSubmit, reset  } = props;
 
+    const rarityStatusOptions = 
+          rarityStatusArray.map((rarityStatus, id) => 
+      <MenuItem key={id} style={styleRules.customWidth} value={rarityStatus.label}>{rarityStatus.label}</MenuItem>);
+
     return ( 
         <form onSubmit={handleSubmit} >
+
             <div>
-               
+                <Field
+                    name="rarityStatus"
+                    component={Select}
+                    label="Rarity Status"
+                    style={styleRules.customWidth}
+                    variant="outlined">
+                    {rarityStatusOptions}
+                </Field>
+            </div>
+            
+            <div>
                 <Field 
-                    
                     label ="Name "
                     name ="name"
                     id="nameInputOfObservationForm"
@@ -29,8 +52,7 @@ let ObservationForm = props => {
 
             <div>
                
-               <Field 
-                   
+               <Field
                    label ="Content "
                    name ="content"
                    id="nameInputOfObservationForm"
@@ -44,17 +66,14 @@ let ObservationForm = props => {
            </div>
 
             <div >
-            <Button 
-                    
+                <Button  
                    type="submit"
                    variant="contained" color="primary"
                    margin = "normal"
                    style={{marginRight: 25}}  
                  >
-                
                     Add Observation
                 </Button>
-                
                 
                 <Button 
                     type="button"
