@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import {ReactDOM} from 'react-dom';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
@@ -7,7 +7,17 @@ import { TextField } from 'redux-form-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from 'redux-form-material-ui/lib/Select';
 import { styleRules } from './ObservationFormStyles';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+  
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
+      marginTop: 60,
+      marginLeft: 160,
+    },
+  });
 
 const rarityStatusArray = [
     {id: 1, label: "Common"},
@@ -49,13 +59,14 @@ let ObservationForm = props => {
                 /> 
 
             </div>
+           
 
             <div>
                
                <Field
                    label ="Content "
                    name ="content"
-                   id="nameInputOfObservationForm"
+                   id="contentInputOfObservationForm"
                    //ref="nameInputOfObservationForm"
                    component= {TextField}  type="text"
                    placeholder="Enter Notes" 
@@ -86,7 +97,7 @@ let ObservationForm = props => {
             </div>
         </form>
     );
-}
+};
 
 ObservationForm.componentDidMount = () => {
     // Doesn't work, nor several other attempts of the same kind
@@ -100,7 +111,7 @@ ObservationForm = reduxForm({
     form: 'observationForm'
 })(ObservationForm);
 
-export default ObservationForm;
+export default withStyles(styles)(ObservationForm);
 
 
 ObservationForm.propTypes = {

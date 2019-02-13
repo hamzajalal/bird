@@ -24,7 +24,8 @@ class CreateObservation extends Component {
               <h1>Adding a new Observation</h1>
                 <ObservationForm onSubmit={this.props.submit}/>
             </div>
-      </form>
+            </form>
+      
       
     );
   }
@@ -32,8 +33,8 @@ class CreateObservation extends Component {
 
 //loads dispatch methods to components props
 const mapDispatchToProps = dispatch => ({
-    submit: (values) => {
-      dispatch(createObservation(values));
+    submit: (values, rarityStatus) => {
+      dispatch(createObservation(values, rarityStatus));
       
       dispatch(reset('observationForm'));  // unique form name
 
